@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var tools = require('../common/tools');
+var apiGlobal = require('../common/apiGlobal');
 var authenticateController = require('../controllers/authenticateController');
 
 var routesMap = [
@@ -13,15 +13,15 @@ var baseApiPath = '/api/v1/';
 
 function initRoutes(app, arrayRoutesMap) {
     arrayRoutesMap.forEach(function(item) {
-        var path = tools.util.format('%s%s', baseApiPath, item.routerName);
-        var routerRequireName = tools.util.format("./all_routes/%s", item.routerName);
+        var path = apiGlobal.util.format('%s%s', baseApiPath, item.routerName);
+        var routerRequireName = apiGlobal.util.format("./all_routes/%s", item.routerName);
 
         app.use(path, require(routerRequireName));
     }, this);
 }
 
 function init(app) {
-    initRoutes(app, [ { routerName: 'authenticate' } ])
+    initRoutes(app, [ { routerName: 'authenticate' }, { routerName: 'createUser' } ]);
 
     app.use(authenticateController.validateMiddleware);
 

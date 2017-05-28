@@ -5,7 +5,8 @@ var router = express.Router();
 var controller = require('../../controllers/userController');
 
 router
-  .get('/', controller.findAll)
-  .post('/', controller.add);
+  .get('/', controller.findCurrent)
+  .get('/findAllUsers', controller.findAll)
+  .put('/:id', controller.update)
 
 module.exports = router;

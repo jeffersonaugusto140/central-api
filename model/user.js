@@ -7,11 +7,23 @@ var claimSchema = centralMondoDb.createSchema({
     value: String
 });
 
+var roleSchema = centralMondoDb.createSchema({ 
+    type: String,
+    enum: ['admin', 'user_financial'],
+    default: ['user_financial']
+});
+
 var userSchema = centralMondoDb.createSchema({ 
     name: String, 
     email: String,
-    admin: Boolean ,
-    password: String, 
+    password: String,
+    roles: {
+        type: [{
+            type: String,
+            enum: ['admin', 'user_financial']
+        }],
+        default: ['user_financial']
+    },
     claims: [claimSchema]
 });
 

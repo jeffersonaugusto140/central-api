@@ -1,51 +1,23 @@
 'use strict';
 
 var models = require('../data/centralMongoDb');
-var tools = require('../common/tools');
+var apiGlobal = require('../common/apiGlobal');
 var jwt = require('jsonwebtoken');
 var config = require('../common/config');
 
-var successFalse = { success: false, message: 'Authentication failed.' };
 var TOKEN_TIME_24H = 86400000;
 
-function getReturnError(message) {
-    console.error('Authentication failed. User not found.');
-    return successFalse;
-}
-
-function getErrorAuthenticationFailedWrongPassword() {
-    return successFalse;
-}
-
-function updateLastToken(user, token) {
-    var claimsResult = user.claims.filter(function(item){
-        return item.key === 'lastToken';
-    });
-
-    if (claimsResult && claimsResult.length > 0) {
-        var index = user.claims.indexOf(claimsResult);
-        user.claims.slice(index, 1);
-    } 
-    
-    user.claims.push({
-        key: 'lastToken',
-        value: token
-    });
-
-    models.users().update({ _id: user._id}, user, function (err, res) {
-        tools.validator.throwIfExist(err);
-    })
-}
-
 function validateAutencationUser(user, req, resp) {
-    if (user.password != req.body.password) {
-        res.json(getReturnError('Authentication failed. Wrong password.'));
+    var pass = jwt.sign(req.body.password, config.secret);
+
+    if (user.password != pass) {
+        res.json(apiGlobal.execError('Authentication failed. Wrong password.'));
     } else{
-        var token = jwt.sign(user, config.secret, { 
+        var objToken = { user: user, time: Date.now() };
+
+        var token = jwt.sign(objToken, config.secret, { 
             expiresIn: TOKEN_TIME_24H 
         });
-
-        user = updateLastToken(user, token);
 
         resp.json({
           success: true,
@@ -57,10 +29,10 @@ function validateAutencationUser(user, req, resp) {
 
 function authenticate(req, resp, next) {
     models.users().findOne({ email: req.body.email }, function (err, user) {
-        tools.validator.throwIfExist(err);
+        apiGlobal.throwIfExist(err);
 
         if (!user) {
-            resp.json(getReturnError('Authentication failed. User not found.'));
+            resp.json(apiGlobal.execError('Authentication failed. User not found.'));
         } else {
             validateAutencationUser(user, req, resp);
         }
@@ -74,14 +46,14 @@ function validateMiddleware(req, resp, next) {
     if (token) {
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
-                resp.json(tools.returnApi.successFalse('Failed to authenticate token.'))
+                resp.json(apiGlobal.apiError('Failed to authenticate token.'))
             } else {
-                req.user = decoded._doc;
+                req.user = decoded.user;
                 next();
             }
         })
     } else {
-        return resp.status(403).send(tools.returnApi.successFalse('No token provided.'));
+        return resp.status(403).send(apiGlobal.apiError('No token provided.'));
     }
 }
 

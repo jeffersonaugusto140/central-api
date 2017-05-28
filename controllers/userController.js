@@ -2,34 +2,40 @@
 
 var express = require('express'); 
 var models = require('../data/centralMongoDb');
-var tools = require('../common/tools');
+var apiGlobal = require('../common/apiGlobal');
+var jwt = require('jsonwebtoken');
+var config = require('../common/config');
 
 function findAll(req, resp, next) {
     models.users().find({}, function (err, res) {
-        tools.validator.throwIfExist(err);
+        apiGlobal.throwIfExist(err);
         resp.json({users: res});
     });
 }
 
-function add(req, resp, next) {
+function findCurrent(req, resp, next) {
+    resp.json(req.user);
+}
+
+function update(req, resp, next) {
+    var userId = req.params.id;
     var user = req.body;
 
-    models.users().find({ email: user.email }, function (err, users) {
-        tools.validator.throwIfExist(err);
+    var pass = jwt.sign(user.password, config.secret);
 
-        if (users.length == 0) {
-            models.users().create(user, function (err, res) {
-                tools.validator.throwIfExist(err);
-                resp.json({user: res});
-            });
+    var userUpdated = { name: user.name, email: user.email, password: pass };
+
+    models.users().update({ _id: userId}, userUpdated, function (err, res) {
+        if (err) {
+            resp.json(apiGlobal.mongoDbError(err));    
         } else {
-            tools.returnApi.successFalse('E-mail already exists in the database.');
+            resp.json(apiGlobal.execOk("Success.", user));
         }
     })
-
 }
 
 module.exports = {
+    findCurrent: findCurrent,
     findAll: findAll,
-    add: add
+    update: update
 }
