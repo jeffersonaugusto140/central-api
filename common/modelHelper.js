@@ -1,13 +1,13 @@
 'use strict';
 
-var centralHelper = require('./centralHelper');
+var tools = require('./tools');
 
 function findModel(name) {
     try {
-        var path = centralHelper.util.format('../model/%s', name);
+        var path = tools.util.format('../model/%s', name);
         return require(path);
     } catch (error) {
-        error.message = centralHelper.util.format('Model %s não encontrada.', name)
+        error.message = tools.util.format('Model %s não encontrada.', name)
         console.log(error.message);
         throw error;
     }

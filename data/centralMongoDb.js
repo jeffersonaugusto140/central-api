@@ -15,14 +15,6 @@ function getDB() {
     return db;
 }
 
-function getResult(err, res, callback) {
-    if (err){
-        throw err;
-    }
-
-    callback(res);
-}
-
 function createSchema(value) {
     return mongoose.Schema(value);
 }
@@ -45,7 +37,6 @@ function createModel(name, model){
 
 module.exports = {
     database: getDB,
-    getResult:getResult,
     createSchema: createSchema,
     createModel: createModel,
     users: function(){ 

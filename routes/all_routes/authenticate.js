@@ -2,9 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
+var controller = require('../../controllers/authenticateController');
 
-router.get('/', function(req, resp, next) {
-  resp.json({users: [{name: 'Timmy'}]});
-});
+router.post('/', controller.authenticate);
 
 module.exports = router;
