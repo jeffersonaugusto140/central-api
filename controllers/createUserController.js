@@ -19,7 +19,7 @@ function add(req, resp, next) {
                 if (err) {
                     resp.json(apiGlobal.mongoDbError(err));    
                 } else {
-                    resp.json(apiGlobal.execOk("Success.", res));
+                    resp.json(apiGlobal.execOk("Success."));
                 }
             });
         } else {
