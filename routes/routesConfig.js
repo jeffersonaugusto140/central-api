@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var apiGlobal = require('../common/apiGlobal');
-var authenticateController = require('../controllers/authenticateController');
+var validatorToken = require('../logic/middlewarers/validatorToken')
 
 var routesMap = [
     { routerName: 'users' }
@@ -23,7 +23,7 @@ function initRoutes(app, arrayRoutesMap) {
 function init(app) {
     initRoutes(app, [ { routerName: 'authenticate' }, { routerName: 'createUser' } ]);
 
-    app.use(authenticateController.validateMiddleware);
+    app.use(validatorToken.validate);
 
     initRoutes(app, routesMap);
 }

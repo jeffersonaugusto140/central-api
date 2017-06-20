@@ -2,8 +2,9 @@
 
 var express = require('express');
 var router = express.Router();
-var controller = require('../../controllers/authenticateController');
+var wrapper = require('../../common/wrapperFnController');
+var service = require('../../logic/service/userService');
 
-router.post('/', controller.authenticate);
+router.post('/', wrapper.passBody(service.resquestToken));
 
 module.exports = router;
