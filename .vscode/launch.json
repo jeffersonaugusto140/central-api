@@ -19,6 +19,22 @@
         ],
         "internalConsoleOptions": "openOnSessionStart"
     },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "Test crawler",
+        "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+        "args": [
+            "--grep crawlerDolarHoje",
+            "-u",
+            "tdd",
+            "--timeout",
+            "999999",
+            "--colors",
+            "${workspaceRoot}/test"
+        ],
+        "internalConsoleOptions": "openOnSessionStart"
+    },
         {
             "type": "node",
             "request": "launch",

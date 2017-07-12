@@ -15,8 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-process.env.ENVIROMENT = 'dev';
-
 app.set('superSecret', config.secret);
 
 routesConfig.init(app); 

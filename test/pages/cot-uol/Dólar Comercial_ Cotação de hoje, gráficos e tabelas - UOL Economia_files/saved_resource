@@ -1,0 +1,1318 @@
+(function () {window._dt_dynad_5550002193_14979699702021218267618='';window._tp_dynad_5550002193_14979699702021218267618={};if(typeof JSON!=="object"){JSON={};JSON.parse=JSON.parse||function(o){return eval('('+o+')')};JSON.stringify=JSON.stringify||function(o){var n;var a;var t=typeof(o);var json=[];if(t!='object'||o===null){if(t=="string"){o='"'+o+'"'}return String(o)}else{a=(o&&o.constructor==Array);for(var key in o){n=o[key];t=typeof(n);if(t=="string"){n='"'+n.replace(/["]/g,"\\\"")+'"'}else if(t=="object"&&n!==null){n=JSON.stringify(n)}json.push((a?"":'"'+key+'":')+String(n))}return(a?"[":"{")+String(json)+(a?"]":"}")}}}
+function DADB(t){return DADB.inst instanceof DADB?DADB.inst._rs=t(DADB.inst):(this._if=null,this._ok=!1,this._db=(typeof window['_dynad_tag_protocol_']!=='undefined'?window['_dynad_tag_protocol_']:("http:"!=window.location.protocol?"https://":"http://"))+"s.dynad.net",this._pt="/stack/KMA9C2O70iP6CHSgXk0LGaQ8ML9m6vJE4RIi1Rf61p4.html?v68",this._qu=[],this._rq={},this._id=(new Date).getTime()+Math.floor(1e4*Math.random()),this._ls=this._dg()==this._db,this._rs="",DADB.inst=this,void this.init(function(){"function"==typeof t&&(DADB.inst._rs=t(DADB.inst))}))}"object"!=typeof JSON&&(JSON={},JSON.parse=JSON.parse||function(o){return eval("("+o+")")},JSON.stringify=JSON.stringify||function(t){var i,e,s=typeof t,n=[];if("object"!=s||null===t)return"string"==s&&(t='"'+t+'"'),t+"";e=t&&t.constructor==Array;for(var o in t)i=t[o],s=typeof i,"string"==s?i='"'+i.replace(/["]/g,'\\"')+'"':"object"==s&&null!==i&&(i=JSON.stringify(i)),n.push((e?"":'"'+o+'":')+(i+""));return(e?"[":"{")+(n+"")+(e?"]":"}")}),DADB.prototype={constructor:DADB,init:function(t){var i=this;this._ls||this._if||(this._if=document.createElement("iframe"),this._if.style.cssText="position:absolute;width:1px;height:1px;left:-9999px;",(document.body||document.documentElement||document.getElementsByTagName('body')[0]).appendChild(this._if),window.addEventListener?(this._if.addEventListener("load",function(){i._ild()},!1),window.addEventListener("message",function(t){i._hm(t)},!1)):this._if.attachEvent&&(this._if.attachEvent("onload",function(){i._ild()},!1),window.attachEvent("onmessage",function(t){i._hm(t)})),this._if.src=this._db+this._pt),"function"==typeof t&&t()},getResult:function(){return this._rs},getCk:function(t,i){var e={request:{id:++this._id,type:"gc",key:t},callback:i};this._s(e)},setCk:function(t,i,e,s){"function"==typeof e&&(s=e,e=2592e3);var n={request:{id:++this._id,type:"sc",key:t,value:i,ttl:e},callback:s};this._s(n)},setNav:function(t,i,e,s,n){var o={request:{id:++this._id,type:"snav",key:t,value:i+"|"+e+"|"+s},callback:n};this._s(o)},getNav:function(t,i){var e={request:{id:++this._id,type:"nav",key:t},callback:i};this._s(e)},getItem:function(t,i){if(this._ls)return localStorage[t];var e=this,s={request:{id:++e._id,type:"get",key:t},callback:i};e._s(s)},setItem:function(t,i,e){if(this._ls)return void(localStorage[t]=i);var s=this,n={request:{id:++s._id,type:"set",key:t,value:i},callback:e};s._s(n)},delItem:function(t){if(this._ls)return delete localStorage[t];var i={request:{id:++this._id,type:"unset",key:t}};this._s(i)},_s:function(t){this._ok?this._if&&(this._rq[t.request.id]=t,this._if.contentWindow.postMessage(JSON.stringify(t.request),this._db)):this._qu.push(t)},_ild:function(){if(this._ok=!0,this._qu.length){for(var t=0,i=this._qu.length;i>t;t++)this._s(this._qu[t]);this._qu=[]}},_hm:function(t){if(!/\{.*(\"id\")+.*(\"key\")+.*\}/.test(t.data)||!/s.dynad.net/.test(t.origin)) return;try{if(t.origin==this._db){var i=JSON.parse(t.data);void 0!==this._rq[i.id].deferred&&this._rq[i.id].deferred.resolve(i.value);void 0!==this._rq[i.id]&&"function"==typeof this._rq[i.id].callback&&(this._rs=this._rq[i.id].callback(i.key,i.value)),delete this._rq[i.id]}}catch(t){}},_dg:function(){var t=window.location.href,i=document.createElement("a");return i.href=t,i.hostname}};
+window._DADB_5550002193_14979699702021218267618=DADB;
+function DAFIFO(e,t,n,r,i){this.s=e;this.t=t;this.db=n;this.it=[];this.ttl=r;this._rs="";var s=this;s.db.getItem(s.t,function(e,t){s.init(e,t);if(typeof i=="function"){s._rs=i(s)}})}DAFIFO.prototype={constructor:DAFIFO,init:function(e,t){if(t==null||t==""){this.it={}}else{this.it=JSON.parse(t)}},commit:function(e){var t=this;var n=0;this.db.setItem(this.t,JSON.stringify(this.it));if(typeof e=="function"){e(n)}},getResult:function(){return this._rs},push:function(e,t){var n=0;if(this.it!=null&&typeof e==="string"&&e!=""){this.it=this._vd();var r=[];r[r.length]={v:e,t:parseInt((new Date).getTime()/1e3)};var i=1;for(k in this.it){if(i++<this.s&&typeof this.it[k]==="object"&&typeof this.it[k]["v"]==="string"&&typeof this.it[k]["t"]==="number"&&this.it[k]["v"]!=e&&this.it[k]["v"]!=""){r[r.length]=this.it[k]}}n=1;this.it=r;if(typeof t=="function"){t(n)}}return n},pop:function(e){var t=null;if(this.it!=null){this.it=this._vd();var n=[];var r=0;for(k in this.it){if(r++>0){n[n.length]=this.it[k]}else{t=this.it[k]["v"]}}this.it=n;if(typeof e=="function"){e(t)}}return t},remove:function(e,t){var n=[];if(this.it!=null){var r=0;var i=[];for(k in this.it){if(this._ia(k)&&this.it[k]["v"]!=e){i[r++]=this.it[k]}}this.it=i;if(typeof t=="function"){t(n)}}return n},list:function(e,t,n){var f=[];if("function"==typeof e&&void 0==t&&(n=e,t=!1,e=this.it.length),"function"==typeof t&&void 0==n&&(n=t,t=!1),null!=this.it){var o=-1;for(k in this.it)if(this._ia(k)){if(++o>=this.s||o>=e)break;f[o]=t?this.it[k]:this.it[k].v}"function"==typeof n&&n(f)}return f},clear:function(e){this.it=[];if(typeof e=="function"){e()}},_vd:function(){var e=[];for(k in this.it){if(this._ia(k))e[k]=this.it[k]}return e},_ct:function(){var e=0;for(k in this.it)e++;return e},_ia:function(e){return(new Date).getTime()/1e3-this.it[e]["t"]<this.ttl}};
+window._DAFIFO_5550002193_14979699702021218267618=DAFIFO;
+new DADB(function(db){db.getCk('optout',function(k,v){if(v!=='1'){(function(customerId, placementId, campaignId, creativeId, timestamp, lookBackWindow, action){setTimeout(function(){new DADB(function(a){"I"==action?new DAFIFO(100,"d"+customerId+"W",a,15552e3,function(a){a.push(placementId+"|"+campaignId+"|"+creativeId+"|"+timestamp+"|"+(timestamp+24*lookBackWindow*3600),function(){a.commit(function(){a.list(function(b){for(var c in b){var d=b[c].split("|");d[d.length-1]<timestamp&&a.remove(b[c],function(){a.commit()})}})})})}):"D"==action?new DAFIFO(100,"d"+customerId+"W",a,15552e3,function(a){a.list(function(b){for(var c in b)els[els.length-1]<timestamp&&a.remove(b[c],function(){a.commit()}),b[c].indexOf(placementId+"|"+campaignId+"|"+creativeId+"|")>-1&&a.remove(b[c],function(){a.commit()})})}):"R"==action&&new DAFIFO(100,"d"+customerId+"W",a,15552e3,function(a){a.list(function(b){var c="";for(var d in b)c+=(""==c?"":";")+b[d];a.clear(function(){a.commit(function(){callback(c)})})})})});},0,customerId,placementId,campaignId,creativeId,timestamp,lookBackWindow,action);})(20160221,5550002193,5000003610,4000024513,1497969920,30,'I');}else{db.setCk('uid','',0)}})});
+var ele=document.createElement("div");ele.setAttribute("id","_dynad_c_I5550002193_14979699702021218267618");ele.setAttribute("style","border:0; z-index:1; margin:0; visibility:visible; display:block; transition:all 1s; background-color:white; overflow:hidden; -webkit-transition:all 1s; width:100%; -o-transition:all 1s; height:0px; -moz-transition:all 1s; ");var target=(function(isIE){try { 
+    if( Math.random() < 0.2 ) {
+        if( typeof UOLPD !== 'undefined' && typeof UOLPD.dataLayer !== 'undefined' ) {
+        	var params = '';
+        	try { 
+        	    for(var key in UOLPD.dataLayer) {
+        	        if( key.indexOf('tt_') == 0 ) { 
+        	            var value = UOLPD.dataLayer[ key ].split("CA").join("");
+        	            if( value != '' && value != 'na' ) 
+        	                params += (params != '' ? '&' : '' ) + key.replace('tt_', 'tt-seg-') + '=' + value;
+        	        }
+        	    }
+        	} catch (exDL ) { }	
+        	if( params != '' ) {
+        	    var lib = document.createElement('img'); 
+        	    lib.setAttribute('src', 'https://trg.adilligo.com/dcs/tt?' + params);
+        	    lib.setAttribute('width', '0'); 
+        	    lib.setAttribute('height', '0');
+        	    lib.setAttribute('style', 'visibility: hidden');
+        	    document.body.appendChild(lib);
+        	}
+        	
+        	
+        	try {
+        	    var lib = document.createElement('img'); 
+        	    lib.setAttribute('src', 'https://cm.g.doubleclick.net/pixel?google_nid=universo_online_w_asapcode_br&google_cm&ord=' + Date.now());
+        	    lib.setAttribute('width', '0'); 
+        	    lib.setAttribute('height', '0');
+        	    lib.setAttribute('style', 'visibility: hidden');
+        	    document.body.appendChild(lib);
+        	
+        	} catch (exCSAdx) {}
+        	
+        }
+    }
+} catch (e){}
+
+
+if( typeof window.DYNAD_TV !== 'undefined' && typeof window.DYNAD_TV.config !== 'undefined' && typeof window.DYNAD_TV.config.container !== 'undefined' && typeof window.DYNAD_TV.config.container.obj !== 'undefined' ) {
+    var i = document.createElement('img'); i.setAttribute('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
+    i.style.display = 'none';
+    window.DYNAD_TV.config.container.obj.appendChild(i);
+    return [window.DYNAD_TV.config.container.obj, i];
+}
+
+
+if( typeof window['DynAd_tv_Container'] !== 'undefined' ) {
+    try { 
+	    var jsNS = document.createElement("script");
+	    jsNS.setAttribute('src', '//s.dynad.net/stack/FcQVaHc6MaOcDzQjhAV0q78AMg75kNqHmVHSvf95ffqIXpBr_a_IcwHLcQMTBDGewfxoQXBulUZbsXy3Fo9ZHg.js');
+	    jsNS.setAttribute('type', 'text/javascript');
+	    jsNS.setAttribute('async', 'true');
+	    window['DynAd_tv_Container'].appendChild( jsNS ); 
+        return [window['DynAd_tv_Container'], jsNS];
+    } catch ( exComScore ) {}
+}
+
+var containerContent = null;
+if( typeof containerContent === 'undefined' || containerContent == null ) {
+	var e = document.getElementById('texto');
+	if( e != null && typeof e !== 'undefined' && e.tagName == 'DIV' )
+		containerContent = e;
+}
+
+if( typeof containerContent !== 'undefined' && containerContent != null ) {
+    var chd = containerContent.children;
+    var numTagP = 0, firstTagP = null;
+    for(var x = 0; x < chd.length; x++ ) {
+        if( typeof chd[x] !== 'undefined' && typeof chd[x].tagName !== 'undefined' ) {
+			if( chd[x].tagName == 'P' ) {
+			    numTagP++;
+			    firstTagP = chd[x];
+			}
+		}
+    }
+    
+    if( numTagP == 1 ) {
+        chd = firstTagP.children;
+        var numTagBR = 0;
+        for(var x = 0; x < chd.length; x++ ) {
+            if( typeof chd[x] !== 'undefined' && typeof chd[x].tagName !== 'undefined' ) {
+                if( chd[x].tagName == 'BR' )
+                    numTagBR++;
+            }
+        }
+        
+        if( numTagBR >= 3 )
+            containerContent = firstTagP;
+    }
+}
+
+try {
+	if( typeof containerContent !== 'undefined' && containerContent != null ) {
+		var chd = containerContent.children;
+		var re = [], nen = 0;
+		for(var x = 0; x < chd.length; x++ ) {
+			if( typeof chd[x] !== 'undefined' && typeof chd[x].tagName !== 'undefined' ) {
+				if( (chd[x].tagName == 'P' || chd[x].tagName == 'BR' || chd[x].tagName == 'H3') ) {
+				
+				    var hasModoFotoNear = false;
+    			    try { 
+                    for(var xx = x -1; xx >= (x-3); xx-- ) { 
+                        if( chd[xx] && chd[xx].tagName == 'DIV' ) {
+                            if( chd[xx].hasAttribute("class") && chd[xx].getAttribute("class").indexOf("mod-foto") > -1 ) { 
+                                hasModoFotoNear = true;
+                                break;
+                            }
+                        }
+                    }
+                    } catch(e){}
+				    
+				    if( !hasModoFotoNear ) { 
+					    re.push( chd[x] );
+					    nen++;
+					} else {
+					    if( console && console.log )
+                            console.log('discarted container [near mod-foto]', chd[x]);
+                    }
+				}
+			}
+		}
+
+		if( nen >= 5 ) {
+		    try { 
+    		    var jsNS = document.createElement("script");
+    		    jsNS.setAttribute('src', '//s.dynad.net/stack/FcQVaHc6MaOcDzQjhAV0q78AMg75kNqHmVHSvf95ffqIXpBr_a_IcwHLcQMTBDGewfxoQXBulUZbsXy3Fo9ZHg.js');
+    		    jsNS.setAttribute('type', 'text/javascript');
+    		    jsNS.setAttribute('async', 'true');
+    		    re[4].appendChild( jsNS ); 
+		    } catch ( exComScore ) {}
+			return [containerContent, re[4]];
+		}
+	}
+} catch(e){}
+
+try {
+    setTimeout( function () {
+        var ic = document.createElement('img');
+        ic.setAttribute('src', "//t.dynad.net/pc/?dc=5550001587;ord=" + Date.now());
+        ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+        document.getElementsByTagName('body')[0].appendChild( ic );
+    }, 50);
+} catch (e){}
+
+return null;})(false);if(typeof target==='undefined'||target==null||(target.length!=1&&target.length!=2))return;else{try{if(target.length==1)target[0].insertBefore(ele);else target[0].insertBefore(ele,target[1]);}catch(e){if(typeof console!=='undefined'&&typeof console.log!=='undefined')console.log(e);}}var tagParameters=window._tp_dynad_5550002193_14979699702021218267618;var dt_dynad=window._dt_dynad_5550002193_14979699702021218267618;var divAppender=function(s){var n='';var r=s.replace(/<script[^>]*>([\s\S]*?)<\/script>/gi,function(){n+=arguments[1]+'\n';return '';});document.getElementById('_dynad_c_I5550002193_14979699702021218267618').innerHTML=r;if(window.execScript&&n!='') window.execScript(n); else if(n!='')eval(n);};try{
+var _rp14979699702021218267618=(function(reqid,type,step,containerId,placementId){try{if( step == 1 ) {
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i) != null;
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+    
+    if( isMobile.any() ) {
+        if( isMobile.iOS() ) {
+            if( navigator.userAgent.toLowerCase().indexOf(' os 10_') == -1 ) {
+                if( console.log )
+                    console.log('[dynad-tv] - iOS inferior ao 10 nao e suportado');
+                
+                setTimeout(function () {
+                    try { 
+                        var ic = document.createElement('img');
+                        ic.setAttribute('src', "//t.dynad.net/pc/?dc=5550001586;ord=" + Date.now());
+                        ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+                        document.getElementById(containerId).appendChild( ic );
+                    } catch(e){}
+                }, 50);
+                return false;
+            }
+        } else if( isMobile.Android() ) {
+            
+        } else {
+            if( console.log )
+                console.log('[dynad-tv] - plataforma movel nao suportada.');
+                
+            setTimeout(function () {
+                try { 
+                    var ic = document.createElement('img');
+                    ic.setAttribute('src', "//t.dynad.net/pc/?dc=5550001586;ord=" + Date.now());
+                    ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+                    document.getElementById(containerId).appendChild( ic );
+                } catch(e){}
+            }, 50);
+            
+            return false;
+        }
+    }
+}
+
+if( step == 2 ) {
+    if( typeof window.DYNAD_TV === 'undefined' )
+        window.DYNAD_TV = {'config' : {'URL_VAST' : 'https://pubads.g.doubleclick.net/gampad/ads?slotname=/8804/teste/inread&sz=640x480&ciu_szs=&url=%5Breferrer_url%5D&unviewed_position_start=1&output=xml_vast3&impl=s&env=vp&gdfp_req=1&ad_rule=0&video_url_to_fetch=%5Bdescription_url%5D&vad_type=linear&vpos=preroll&pod=1&min_ad_duration=0&max_ad_duration=999999000&ppos=1&lip=true&correlator=' + new Date().getTime() + Math.random()} };
+
+    function DynAdTvKeeper(container) {
+		var idTimeout = null;
+        var STATUS = {
+    			INITIALIZED : 0,
+    			LOADED: 1,
+    			PLAYING : 2,
+    			PAUSED: 3,
+    			CLOSED: 5,
+    			TIMEOUT: 4
+    		};
+
+        var status = STATUS.INITIALIZED,
+        	height = 0,
+            width = 0,
+            vHeight = 0,
+            vWidth = 0,
+            dispatchedPassback = false,
+            isMouseOverIfrm = false,
+            comScoreStreamingTag = null,
+            comScoreStreamingTagID = null,
+            adVideoDuration = 30000;
+        
+        var idAdSystem = "",
+            idCreativeId = "",
+            idAdId = "";
+            
+        function isMobile() {
+            var isMobile = {
+                Android: function() {
+                    return navigator.userAgent.match(/Android/i);
+                },
+                BlackBerry: function() {
+                    return navigator.userAgent.match(/BlackBerry/i);
+                },
+                iOS: function() {
+                    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                },
+                Opera: function() {
+                    return navigator.userAgent.match(/Opera Mini/i);
+                },
+                Windows: function() {
+                    return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+                },
+                any: function() {
+                    return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                }
+            };
+            return isMobile.any();
+        }
+        
+        function comScorePauseVideoAdvertisement() {
+            try {
+            if( comScoreStreamingTagID != null ) {
+            comScoreStreamingTag = document.createElement('script');
+            comScoreStreamingTag.setAttribute('type', 'text/javascript');
+            comScoreStreamingTag.setAttribute('async', 'true');
+            comScoreStreamingTag.setAttribute('src', 'https://sb.scorecardresearch.com/p?c1=2&c2=6036356& ns_ap_sv=2.1511.10&ns_type=hidden&ns_st_it=a&ns_st_sv=4.0.0&ns_st_ad=1&ns_st_sq=1&ns_st_id='+comScoreStreamingTagID+'&ns_st_ec=2&ns_st_cn=1&ns_st_ev=end&ns_st_ct=va11&ns_st_cl='+adVideoDuration+'&ns_st_pt='+adVideoDuration+'&c3=UOLADNET&c4=*null&c6=*null&ns_ts=' + Date.now());
+            divContainer.appendChild( comScoreStreamingTag ); 
+            if( console && console.log )
+                console.log("[dynad-tv] - called method stop at comScore streaming tag."); 
+            }
+            } catch (exInitComScore) { 
+    	        if( console && console.error )
+    	            console.error("[dynad-tv] - failed to dispatch pause comScore streaming tag.", exInitComScore); 
+    		}
+        }
+        
+        function comScorePlayVideoAdvertisement() {
+            try {
+                if( comScoreStreamingTagID == null ) 
+                    comScoreStreamingTagID = Date.now();
+                comScoreStreamingTag = document.createElement('script');
+                comScoreStreamingTag.setAttribute('type', 'text/javascript');
+                comScoreStreamingTag.setAttribute('async', 'true');
+                comScoreStreamingTag.setAttribute('src', 'https://sb.scorecardresearch.com/p?c1=2&c2=6036356& ns_ap_sv=2.1511.10&ns_type=hidden&ns_st_it=a&ns_st_sv=4.0.0&ns_st_ad=1&ns_st_sq=1&ns_st_id='+comScoreStreamingTagID+'&ns_st_ec=1&ns_st_cn=1&ns_st_ev=play&ns_st_ct=va11&ns_st_cl='+adVideoDuration+'&ns_st_pt=0&c3=UOLADNET&c4=*null&c6=*null&ns_ts=' + Date.now());
+                divContainer.appendChild( comScoreStreamingTag ); 
+                if( console && console.log )
+                    console.log("[dynad-tv] - called method play at comScore streaming tag."); 
+    		} catch (exInitComScore) { 
+    		    comScoreStreamingTagID = null;
+    	        if( console && console.error )
+    	            console.error("[dynad-tv] - failed to dispatch play comScore streaming tag.", exInitComScore); 
+    		}
+        }
+
+		function addAdServerCounter ( id ) {
+			var ic = document.createElement('img');
+			ic.setAttribute('src', "https://t.dynad.net/pc/?dc="+id+";ord=" + Date.now());
+			ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+			divContainer.appendChild( ic );
+		}
+		
+        function dispatchEventListener ( eventName, eventData ) {
+            if( console.log )
+                console.log('[dynad-tv] - tag (events): ' + eventName + ' / ' + eventData );
+			if( typeof window.DYNAD_TV !== 'undefined' && typeof window.DYNAD_TV.eventListener !== 'undefined' ) {
+				if( typeof eventData !== 'undefined' )
+					window.DYNAD_TV.eventListener( eventName, eventData );
+				else
+					window.DYNAD_TV.eventListener( eventName );
+			}
+		}
+
+        function handle(e) {
+            if (typeof e.data === 'undefined' || e.data == null)
+                return;
+
+            if ( e.data.indexOf('dynad-tv') == -1 || status == STATUS.TIMEOUT || status == STATUS.CLOSED )
+                return;
+    
+            if( console.log )
+                console.log('[dynad-tv] - tag: ' + e.data);
+
+            if (e.data.indexOf('dynad-tv-protocol/loaded/') == 0) { // player foi carregado
+				try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+				try { dispatchEventListener('loaded', {'w' : width, 'h': height}); } catch(exEvent){}
+                var dm = e.data.substr('dynad-tv-protocol/loaded/'.length).split('/');
+                height = parseInt(dm[1]);
+                width = parseInt(dm[0]);
+                
+                try { 
+                    if( height <= 0 || width <= 0 ) {
+                        width = divContainer.parentNode.offsetWidth;
+                        height = Math.floor( (9/16) * width );
+                    }
+                } catch (e){}
+                
+                status = STATUS.LOADED;
+                resize();
+                follow();
+			} else if (e.data.indexOf('dynad-tv-protocol/click/') == 0) { // player nao contem data
+				try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+				try { dispatchEventListener('click'); } catch(exEvent){}
+				addAdServerCounter(5550001579);
+			} else if (e.data.indexOf('dynad-tv-protocol/no_data/') == 0) { // player nao contem data
+                try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+				var m = e.data.substr('dynad-tv-protocol/no_data/'.length).split('/');
+				try { dispatchEventListener('nodata', m ); } catch(exEvent){}
+			    addAdServerCounter(5550001577);
+				    
+			    /****
+			    //PASSBACK DESLIGADO EM 30/05, DEIXANDO PLAYER UNICO DO GOOGLE OPERANDO.
+				if( !dispatchedPassback && typeof window.DYNAD_TV.config.passback !== 'undefined' && !isMobile() ) {
+                    window.DYNAD_TV.config.URL_VAST = window.DYNAD_TV.config.passback
+                    status = STATUS.INITIALIZED;
+                    dispatchedPassback = true;
+                    ifrm.setAttribute('src', '//s.dynad.net/stack/LgY1T9JAP0K1_MprP6oR2vwOqLNRLh63qf6HJcArD96FV625y4INXTs_6cvwvYQ-9r_KEAPiiCSxfXZ7bBrShaBpCA29ibyjuyYGP0LTXAY.html?v=20170210.1');
+                    if( console.log ) 
+                        console.log('[dynad-tv] - tag: loading passback player (ADX)');
+                } else { 
+    				try {
+    					if( idTimeout != null ) {
+    						clearTimeout(idTimeout);
+    						idTimeout = null;
+    					}
+    				} catch (e){}
+    				var m = e.data.substr('dynad-tv-protocol/no_data/'.length).split('/');
+    				try { dispatchEventListener('nodata', m ); } catch(exEvent){}
+				    addAdServerCounter(5550001577);
+                }
+                ****/
+            } else if (e.data == 'dynad-tv-protocol/close') {
+				status = STATUS.CLOSED;
+				try { dispatchEventListener('closed'); } catch(exEvent){}
+
+				try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+
+                divContainer.style.height = '0px';
+                divContainer.style.width = '0%';
+                divContainer.height = '0px';
+                setTimeout(function() {
+                    container.parentNode.removeChild(container);
+                }, 1000);
+
+                dispose();
+                comScorePauseVideoAdvertisement();
+            } else if (e.data == 'dynad-tv-protocol/init') {
+                sendLoadMessage();
+            } else if (e.data == 'dynad-tv-protocol/user_close') {
+                container.contentWindow.postMessage('dynad-tv-protocol/force_close_linear', '*');
+                window['callbackiruol_user_close'] = function(d){};
+                var e = document.createElement('script'); e.setAttribute('type', 'text/javascript'); e.setAttribute('async', 'true');
+                e.setAttribute('src', '//metrics.dynad.net/resources/counter/jsonp/multipleIncWithFk/dynadtv/behavior/close_button/override/?callback=callbackiruol_user_close&ord=' + Date.now() + '&override_0=' + encodeURIComponent(  idAdSystem + '/' + idAdId + '/' + idCreativeId ) );
+                divContainer.appendChild(e);
+            } else if ( e.data.indexOf('dynad-tv-protocol/impression_data/') == 0 ) {                
+                var op = e.data.substr( ('dynad-tv-protocol/impression_data/').length ).split('/');
+                idAdSystem = op[1], idCreativeId = op[0], idAdId = op[2];
+                try { 
+                    if( op.length > 3 ) {
+                        adVideoDuration = Number(op[3]) * 1000;
+                        if( adVideoDuration < 15000 )
+                            adVideoDuration = 15000
+                    }
+                } catch (exTimer){}    
+            } else if ( e.data.indexOf('dynad-tv-protocol/state_skip/') == 0 ) {
+                var op = e.data.substr( ('dynad-tv-protocol/state_skip/').length );
+                divContainer.setAttribute('state_skip', (op == 'true' ? 'none' : 'block') );
+                //var btCloseEle = document.getElementById('floater_bt_close_dynadtv_unique');
+                //if( btCloseEle )
+                //    btCloseEle.style.display = divContainer.getAttribute('state_skip');        				
+            } else if (e.data == 'dynad-tv-protocol/expand') {
+				divContainer.style.width = '100%';
+                container.style.height = (vHeight + 36) + 'px';
+                container.height = (vHeight + 36) + 'px';
+                divContainer.style.animationDuration="1s";
+                divContainer.style.WebkitTransitionDuration="1s";
+                divContainer.style.WebkitTransition="1s";
+                divContainer.style.MozTransition ="1s";
+                divContainer.style.height = (vHeight + 36) + 'px';
+                divContainer.height = (vHeight + 36) + 'px';
+                sendStartCounterMessage();
+                try { dispatchEventListener('expanded', {'w' : vWidth, 'h': vHeight}); } catch(exEvent){}
+                comScorePlayVideoAdvertisement();
+                addAdServerCounter(5550001580);
+                
+                var bc = document.createElement('div');
+                bc.setAttribute('id', 'floater_bt_close_dynadtv_unique');
+                bc.setAttribute('style', "width:30px; text-align: right; height:15px; position:absolute; top:-4px; right:0px; cursor:pointer; z-index:10; color: black; font-size: 12px; display: block;");
+                bc.setAttribute("onclick", "window.postMessage('dynad-tv-protocol/user_close', '*');");
+                bc.innerHTML = '[ x ]';
+                divContainer.style.overflow = 'visible';
+                //if( divContainer.hasAttribute('state_skip') )
+                //    bc.style.display = divContainer.getAttribute('state_skip');
+                divContainer.style.position = 'relative';
+                divContainer.appendChild( bc );
+                
+            }
+        }
+
+        function resize() {
+            var avWidth = divContainer.parentNode.offsetWidth,
+                avHeight = (document.documentElement.clientHeight * 0.6);
+                
+            if( isMobile() ) { //quando for mobile, desconta borda do UOL (10px de cada lado)
+                avWidth -= 20;
+            }
+
+            if (Math.abs(width - avWidth) < Math.abs(height - avHeight) || width > avWidth) {
+                var ratio = width / avWidth;
+                vWidth = Math.round(width / ratio);
+                vHeight = Math.round(height / ratio);
+            } else {
+                var ratio = height / avHeight;
+                vWidth = Math.round(width / ratio);
+                vHeight = Math.round(height / ratio);
+            }
+            if (vWidth > avWidth) {
+                var ratio = vWidth / avWidth;
+                vWidth = Math.round(vWidth / ratio);
+                vHeight = Math.round(vHeight / ratio);
+            }
+            if (vHeight > avHeight) {
+                var ratio = vHeight / avHeight;
+                vWidth = Math.round(vWidth / ratio);
+                vHeight = Math.round(vHeight / ratio);
+            }
+
+            container.contentWindow.postMessage('dynad-tv-protocol/resize/' + vWidth + '/' + vHeight, '*');
+        }
+        
+        function isElementVisible(el, vdHeight, vdWidth) {
+            var rect = el.getBoundingClientRect();
+            var windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            var vertInView = ( (rect.top + (vdHeight / 2))  <= windowHeight) && ((rect.top + (vdHeight / 2)) >= 0);
+            return (vertInView);
+        }
+
+        //
+        // acompanha evento de scroll
+        //
+        function follow() {
+            if (isElementVisible(container, vHeight, vWidth)) {
+                if (status == STATUS.INITIALIZED) {
+                } else if (status == STATUS.LOADED) {
+                    status = STATUS.PLAYING;
+                    sendPlayMessage();
+                } else if (status == STATUS.PAUSED) {
+                    status = STATUS.PLAYING;
+                    sendPlayMessage();
+                }
+            } else {
+                if (status == STATUS.PLAYING) {
+                    status = STATUS.PAUSED;
+                    sendPauseMessage();
+                }
+            }
+        }
+
+        function dispose() {
+            if (window.addEventListener) {
+                removeEventListener("scroll", follow);
+                removeEventListener("touchstart", follow);
+                removeEventListener("touchend", follow);
+                removeEventListener("resize", resize);
+                removeEventListener("focus", sendFocusMessage);
+                removeEventListener("blur", sendBlurMessage);
+            } else {
+    			detachEvent("onscroll", follow);
+    			detachEvent("ontouchstart", follow);
+    			detachEvent("ontouchend", follow);
+            	detachEvent("onresize", resize);
+            	detachEvent("onfocus", sendFocusMessage);
+                detachEvent("onblur", sendBlurMessage);
+    		}
+        }
+
+    	function sendStartCounterMessage() {
+            container.contentWindow.postMessage('dynad-tv-protocol/start-counter', '*');
+            try { dispatchEventListener('counting'); } catch(exEvent){}
+        }
+
+        function sendLoadMessage() {
+    		if( typeof UOLPD !== 'undefined' && typeof UOLPD.dataLayer !== 'undefined' ) {
+				var params = '&videoplayertype=dynad_in-article';
+				try { 
+        		    for(var key in UOLPD.dataLayer) { 
+        		        params += '&'+ key + '=' + UOLPD.dataLayer[ key ];
+        		    }
+        		} catch (exDL ) {
+    				if( typeof UOLPD.dataLayer.tt_age !== 'undefined' ) params += '&tt_age=' + UOLPD.dataLayer.tt_age;
+    				if( typeof UOLPD.dataLayer.tt_cluster !== 'undefined' ) params += '&tt_cluster=' + UOLPD.dataLayer.tt_cluster;
+    				if( typeof UOLPD.dataLayer.tt_customaudience !== 'undefined' ) params += '&tt_customaudience=' + UOLPD.dataLayer.tt_customaudience;
+    				if( typeof UOLPD.dataLayer.tt_gender !== 'undefined' ) params += '&tt_gender=' + UOLPD.dataLayer.tt_gender;
+    				if( typeof UOLPD.dataLayer.tt_lists !== 'undefined' ) params += '&tt_lists=' + UOLPD.dataLayer.tt_lists;
+    				if( typeof UOLPD.dataLayer.tt_microsegments !== 'undefined' ) params += '&tt_microsegments=' + UOLPD.dataLayer.tt_microsegments;
+    				if( typeof UOLPD.dataLayer.tt_socialclass !== 'undefined' ) params += '&tt_socialclass=' + UOLPD.dataLayer.tt_socialclass;
+    				if( typeof UOLPD.dataLayer.tt_subjects !== 'undefined' ) params += '&tt_subjects=' + UOLPD.dataLayer.tt_subjects;
+    				if( typeof UOLPD.dataLayer.tt_team !== 'undefined' ) params += '&tt_team=' + UOLPD.dataLayer.tt_team;
+    			}	
+    			if( params != '' ) {
+				    if( window.DYNAD_TV.config.URL_VAST.indexOf('&cust_params=') > -1 ) {
+				        var temp = window.DYNAD_TV.config.URL_VAST.split('&cust_params=');
+				        window.DYNAD_TV.config.URL_VAST = temp[0] + '&cust_params='+encodeURIComponent( params.substr(1)+"&") + temp[1];
+				    } else 
+					    window.DYNAD_TV.config.URL_VAST += '&cust_params=' + encodeURIComponent( params.substr(1) );
+				}
+    		}
+    		if( typeof window.DYNAD_TV.config.settings !== 'undefined' ) {
+				var st = '';
+				for(var x = 0 ; x < window.DYNAD_TV.config.settings.length; x++) {
+					st += (st != '' ? '/' : '') + window.DYNAD_TV.config.settings[x].key + '=' + encodeURIComponent( window.DYNAD_TV.config.settings[x].value );
+				}
+				if( st != '' )
+    				container.contentWindow.postMessage('dynad-tv-protocol/settings/' + st, '*');
+			}
+            container.contentWindow.postMessage('dynad-tv-protocol/load/' + window.DYNAD_TV.config.URL_VAST, '*');
+        }
+
+    	function sendFocusMessage() {
+    		if( status == STATUS.PLAYING && typeof container !== 'undefined' && typeof container.contentWindow !== 'undefined' )
+    			container.contentWindow.postMessage('dynad-tv-protocol/win-focus', '*');
+    	}
+
+    	function sendBlurMessage() {
+    		console.log('will dispatch blur:', status);
+    		if( status == STATUS.PLAYING && typeof container !== 'undefined' && typeof container.contentWindow !== 'undefined' )
+    			container.contentWindow.postMessage('dynad-tv-protocol/win-blur', '*');
+    	}
+
+        function sendPlayMessage() {
+            container.contentWindow.postMessage('dynad-tv-protocol/play', '*');
+        }
+
+        function sendPauseMessage() {
+            container.contentWindow.postMessage('dynad-tv-protocol/pause', '*');
+        }
+        
+        var hidden, visibilityChange;
+        try {
+            if (typeof document.hidden !== "undefined") {
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+            } else if (typeof document.mozHidden !== "undefined") {
+                hidden = "mozHidden";
+                visibilityChange = "mozvisibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+            }
+        } catch (e){}
+
+        if (window.addEventListener) {
+            addEventListener("scroll", follow, false);
+            addEventListener("touchstart", follow, false);
+            addEventListener("touchend", follow, false);
+            addEventListener("resize", resize, false);
+            addEventListener("focus", sendFocusMessage, false);
+            
+            document.addEventListener(visibilityChange, function() {
+                if (document[hidden]) {
+                    sendBlurMessage();
+                } else {
+                    sendFocusMessage();
+                }
+            });
+
+            addEventListener("blur", function () {
+    			if ( isMouseOverIfrm === false ) {
+    			    try { 
+    			        if(document.activeElement !== ifrm )
+    				        sendBlurMessage();
+    				} catch (e) {
+    				    sendBlurMessage();  
+    				    console.log('failed to detect iframe lost focus', e);
+    				}
+    			}
+    		}, false);
+
+            addEventListener("message", handle, false);
+            container.addEventListener("mouseenter", function (e) { isMouseOverIfrm = true; }, false);
+            container.addEventListener("mouseleave", function (e) { isMouseOverIfrm = false; }, false);
+        } else {
+            attachEvent("onscroll", follow);
+            attachEvent("ontouchstart", follow, false);
+            attachEvent("ontouchend", follow, false);
+            attachEvent("onresize", resize, false);
+            attachEvent("onfocus", sendFocusMessage, false);
+            
+            try { 
+                document.attachEvent('on' + visibilityChange, function() {
+                    if (document[hidden]) {
+                        sendBlurMessage();
+                    } else {
+                    
+                        sendFocusMessage();
+                    }
+                });
+            } catch (exEvent){}
+            
+            attachEvent("onblur", function () {
+    			if ( isMouseOverIfrm === false ) {
+    			    try { 
+    			        if(document.activeElement !== ifrm )
+    				        sendBlurMessage();
+    				} catch (e) {
+    				    console.log('failed to detect iframe lost focus', e);
+    				    sendBlurMessage();  
+    				}
+    			}
+    		}, false);
+    		
+            attachEvent("onmessage", handle);
+            container.attachEvent("onmouseenter", function ( e ) { isMouseOverIfrm = true; }, false);
+            container.attachEvent("onmouseleave", function ( e ) { isMouseOverIfrm = false; }, false);
+        }
+
+        follow();
+
+        function startTimeoutCounter () {
+			if( idTimeout != null )
+				return;
+
+			idTimeout = setTimeout( function () {
+				//change status for timeout
+				status = STATUS.TIMEOUT;
+				setTimeout(function() {
+					//remove container
+					try { divContainer.parentNode.removeChild(divContainer); } catch(e){}
+				}, 1000);
+				//dispatch nodata event
+				dispatchEventListener('nodata', 'timeout operation' );
+				//dispose listeners
+				dispose();
+				//add event counter
+				addAdServerCounter(5550001578);
+			}, window.DYNAD_TV.config.timeout || 16000);
+
+			if (window.addEventListener)
+				removeEventListener("touchstart", startTimeoutCounter, false);
+			else
+				detachEvent("ontouchstart", startTimeoutCounter, false);
+		}
+
+		/**if( isMobile.any() ) {
+			if (window.addEventListener)
+				addEventListener("touchstart", startTimeoutCounter, false);
+			else
+				attachEvent("ontouchstart", startTimeoutCounter, false);
+		} else***/
+			startTimeoutCounter();
+	}
+
+    var divContainer = document.getElementById(containerId),
+        ifrm = document.getElementById(reqid.replace('I', 'IF'));
+    try {
+        try {
+            divContainer.style.width = '0%';
+            ifrm.style.width = '100%';
+            ifrm.width = '100%';
+
+            divContainer.style.height = '0px';
+            ifrm.style.height = '0px';
+            ifrm.height = 0;
+        } catch ( e ) { return false; }
+        DynAdTvKeeper(ifrm);
+    } catch (e) { return false; }
+}
+return true;}catch(e){if(typeof console!=='undefined'&&typeof console.log!=='undefined'){console.log('DynAd Error:');console.log(e);}}})('I5550002193_14979699702021218267618', 'I', 1,'_dynad_c_I5550002193_14979699702021218267618','5550002193');if(_rp14979699702021218267618==true||typeof _rp14979699702021218267618==='undefined'){divAppender("<iframe id='IF5550002193_14979699702021218267618' name='I5550002193_14979699702021218267618' src='https://s.dynad.net/stack/xuHmT_p89iAifY6nov7JNRh9aAZBhDfkhLc9nCMR743DVKbQ_tcj7XAQPsWhT1lh.html' style='border:0; visibility:visible; -webkit-transition:all 1s; width:100%; -o-transition:all 1s; transition:all 1s; height:0px; -moz-transition:all 1s; ' marginwidth='0' marginwidth='0' width='88' height='31' marginheight='0' align='top' scrolling='No' bordercolor='#000000' frameborder='0' hspace='0' vspace='0'></iframe>");(function(){var theIframe=document.getElementById('IF5550002193_14979699702021218267618');var dyndata=(function(){var t=dt_dynad;if(typeof t==="object")return JSON.stringify(t);else if(typeof t==="undefined"||t==null||t=="")return"{}";else return (function(e){var t=function(e){var t="";for(var n=e.length-1;n>=0;n--)if(e[n]>="0"&&e[n]<="9")t+=e[n];else break;return[e.substring(0,n+1),t]};var n=e.replace(/"/g,"'").split(/&(?!([#a-z0-9]{1,4})(;))/gi);var r="";var i="";var s="";for(var o=0;o<n.length;o++){if(typeof n[o]==="undefined")continue;var u=n[o].split("=");if(u[0]=="_nofobjs"||u[0]=="_dyn_hash_"||u.length!=2)continue;var a=t(u[0]);if(a[1]!=r&&i!=""){s+=(s==""?"":",")+"{"+i+"}";i=""}if(a[0]!=""){r=a[1];i+=(i==""?"":",")+'"'+a[0]+'":"'+decodeURIComponent(u[1])+'"'}}s+=(s==""?"":",")+"{"+i+"}";return"["+s+"]"})(t.toString())})();var data='{"target":"_blank","clickTAG":"https://t.dynad.net/c/?dc=5550002193;ct=1;ci=5000003610;cr=4000024513.0;cb=4000020066.0;ord=0;tid=TB-FE3;bid=;;","clickTAG2":"https://t.dynad.net/c/?dc=5550002193;ct=2;ci=5000003610;cr=4000024513.0;cb=4000020066.0;ord=0;tid=TB-FE3;bid=;;","clickTAG3":"https://t.dynad.net/c/?dc=5550002193;ct=3;ci=5000003610;cr=4000024513.0;cb=4000020066.0;ord=0;tid=TB-FE3;bid=;;","clickTAG4":"https://t.dynad.net/c/?dc=5550002193;ct=4;ci=5000003610;cr=4000024513.0;cb=4000020066.0;ord=0;tid=TB-FE3;bid=;;","clickTAG5":"https://t.dynad.net/c/?dc=5550002193;ct=5;ci=5000003610;cr=4000024513.0;cb=4000020066.0;ord=0;tid=TB-FE3;bid=;;","eventsMap":{},"domain":"https://t.dynad.net","tagParameters":'+JSON.stringify(tagParameters)+',"data":'+dyndata+'}';if(window.addEventListener){
+theIframe.addEventListener('load',function(){theIframe.contentWindow.postMessage(JSON.stringify((function(dynamicData){return dynamicData;})(JSON.parse(data))),'https://s.dynad.net')});}else{theIframe.attachEvent('onload', function(){theIframe.contentWindow.postMessage(JSON.stringify((function(dynamicData){return dynamicData;})(JSON.parse(data))),'https://s.dynad.net')});}})();(function(reqid,type,step,containerId,placementId){try{if( step == 1 ) {
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i) != null;
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+    
+    if( isMobile.any() ) {
+        if( isMobile.iOS() ) {
+            if( navigator.userAgent.toLowerCase().indexOf(' os 10_') == -1 ) {
+                if( console.log )
+                    console.log('[dynad-tv] - iOS inferior ao 10 nao e suportado');
+                
+                setTimeout(function () {
+                    try { 
+                        var ic = document.createElement('img');
+                        ic.setAttribute('src', "//t.dynad.net/pc/?dc=5550001586;ord=" + Date.now());
+                        ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+                        document.getElementById(containerId).appendChild( ic );
+                    } catch(e){}
+                }, 50);
+                return false;
+            }
+        } else if( isMobile.Android() ) {
+            
+        } else {
+            if( console.log )
+                console.log('[dynad-tv] - plataforma movel nao suportada.');
+                
+            setTimeout(function () {
+                try { 
+                    var ic = document.createElement('img');
+                    ic.setAttribute('src', "//t.dynad.net/pc/?dc=5550001586;ord=" + Date.now());
+                    ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+                    document.getElementById(containerId).appendChild( ic );
+                } catch(e){}
+            }, 50);
+            
+            return false;
+        }
+    }
+}
+
+if( step == 2 ) {
+    if( typeof window.DYNAD_TV === 'undefined' )
+        window.DYNAD_TV = {'config' : {'URL_VAST' : 'https://pubads.g.doubleclick.net/gampad/ads?slotname=/8804/teste/inread&sz=640x480&ciu_szs=&url=%5Breferrer_url%5D&unviewed_position_start=1&output=xml_vast3&impl=s&env=vp&gdfp_req=1&ad_rule=0&video_url_to_fetch=%5Bdescription_url%5D&vad_type=linear&vpos=preroll&pod=1&min_ad_duration=0&max_ad_duration=999999000&ppos=1&lip=true&correlator=' + new Date().getTime() + Math.random()} };
+
+    function DynAdTvKeeper(container) {
+		var idTimeout = null;
+        var STATUS = {
+    			INITIALIZED : 0,
+    			LOADED: 1,
+    			PLAYING : 2,
+    			PAUSED: 3,
+    			CLOSED: 5,
+    			TIMEOUT: 4
+    		};
+
+        var status = STATUS.INITIALIZED,
+        	height = 0,
+            width = 0,
+            vHeight = 0,
+            vWidth = 0,
+            dispatchedPassback = false,
+            isMouseOverIfrm = false,
+            comScoreStreamingTag = null,
+            comScoreStreamingTagID = null,
+            adVideoDuration = 30000;
+        
+        var idAdSystem = "",
+            idCreativeId = "",
+            idAdId = "";
+            
+        function isMobile() {
+            var isMobile = {
+                Android: function() {
+                    return navigator.userAgent.match(/Android/i);
+                },
+                BlackBerry: function() {
+                    return navigator.userAgent.match(/BlackBerry/i);
+                },
+                iOS: function() {
+                    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                },
+                Opera: function() {
+                    return navigator.userAgent.match(/Opera Mini/i);
+                },
+                Windows: function() {
+                    return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+                },
+                any: function() {
+                    return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                }
+            };
+            return isMobile.any();
+        }
+        
+        function comScorePauseVideoAdvertisement() {
+            try {
+            if( comScoreStreamingTagID != null ) {
+            comScoreStreamingTag = document.createElement('script');
+            comScoreStreamingTag.setAttribute('type', 'text/javascript');
+            comScoreStreamingTag.setAttribute('async', 'true');
+            comScoreStreamingTag.setAttribute('src', 'https://sb.scorecardresearch.com/p?c1=2&c2=6036356& ns_ap_sv=2.1511.10&ns_type=hidden&ns_st_it=a&ns_st_sv=4.0.0&ns_st_ad=1&ns_st_sq=1&ns_st_id='+comScoreStreamingTagID+'&ns_st_ec=2&ns_st_cn=1&ns_st_ev=end&ns_st_ct=va11&ns_st_cl='+adVideoDuration+'&ns_st_pt='+adVideoDuration+'&c3=UOLADNET&c4=*null&c6=*null&ns_ts=' + Date.now());
+            divContainer.appendChild( comScoreStreamingTag ); 
+            if( console && console.log )
+                console.log("[dynad-tv] - called method stop at comScore streaming tag."); 
+            }
+            } catch (exInitComScore) { 
+    	        if( console && console.error )
+    	            console.error("[dynad-tv] - failed to dispatch pause comScore streaming tag.", exInitComScore); 
+    		}
+        }
+        
+        function comScorePlayVideoAdvertisement() {
+            try {
+                if( comScoreStreamingTagID == null ) 
+                    comScoreStreamingTagID = Date.now();
+                comScoreStreamingTag = document.createElement('script');
+                comScoreStreamingTag.setAttribute('type', 'text/javascript');
+                comScoreStreamingTag.setAttribute('async', 'true');
+                comScoreStreamingTag.setAttribute('src', 'https://sb.scorecardresearch.com/p?c1=2&c2=6036356& ns_ap_sv=2.1511.10&ns_type=hidden&ns_st_it=a&ns_st_sv=4.0.0&ns_st_ad=1&ns_st_sq=1&ns_st_id='+comScoreStreamingTagID+'&ns_st_ec=1&ns_st_cn=1&ns_st_ev=play&ns_st_ct=va11&ns_st_cl='+adVideoDuration+'&ns_st_pt=0&c3=UOLADNET&c4=*null&c6=*null&ns_ts=' + Date.now());
+                divContainer.appendChild( comScoreStreamingTag ); 
+                if( console && console.log )
+                    console.log("[dynad-tv] - called method play at comScore streaming tag."); 
+    		} catch (exInitComScore) { 
+    		    comScoreStreamingTagID = null;
+    	        if( console && console.error )
+    	            console.error("[dynad-tv] - failed to dispatch play comScore streaming tag.", exInitComScore); 
+    		}
+        }
+
+		function addAdServerCounter ( id ) {
+			var ic = document.createElement('img');
+			ic.setAttribute('src', "https://t.dynad.net/pc/?dc="+id+";ord=" + Date.now());
+			ic.setAttribute('style', 'width: 0px; height: 0px; visibility: hidden; position: absolute; z-index: 0;');
+			divContainer.appendChild( ic );
+		}
+		
+        function dispatchEventListener ( eventName, eventData ) {
+            if( console.log )
+                console.log('[dynad-tv] - tag (events): ' + eventName + ' / ' + eventData );
+			if( typeof window.DYNAD_TV !== 'undefined' && typeof window.DYNAD_TV.eventListener !== 'undefined' ) {
+				if( typeof eventData !== 'undefined' )
+					window.DYNAD_TV.eventListener( eventName, eventData );
+				else
+					window.DYNAD_TV.eventListener( eventName );
+			}
+		}
+
+        function handle(e) {
+            if (typeof e.data === 'undefined' || e.data == null)
+                return;
+
+            if ( e.data.indexOf('dynad-tv') == -1 || status == STATUS.TIMEOUT || status == STATUS.CLOSED )
+                return;
+    
+            if( console.log )
+                console.log('[dynad-tv] - tag: ' + e.data);
+
+            if (e.data.indexOf('dynad-tv-protocol/loaded/') == 0) { // player foi carregado
+				try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+				try { dispatchEventListener('loaded', {'w' : width, 'h': height}); } catch(exEvent){}
+                var dm = e.data.substr('dynad-tv-protocol/loaded/'.length).split('/');
+                height = parseInt(dm[1]);
+                width = parseInt(dm[0]);
+                
+                try { 
+                    if( height <= 0 || width <= 0 ) {
+                        width = divContainer.parentNode.offsetWidth;
+                        height = Math.floor( (9/16) * width );
+                    }
+                } catch (e){}
+                
+                status = STATUS.LOADED;
+                resize();
+                follow();
+			} else if (e.data.indexOf('dynad-tv-protocol/click/') == 0) { // player nao contem data
+				try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+				try { dispatchEventListener('click'); } catch(exEvent){}
+				addAdServerCounter(5550001579);
+			} else if (e.data.indexOf('dynad-tv-protocol/no_data/') == 0) { // player nao contem data
+                try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+				var m = e.data.substr('dynad-tv-protocol/no_data/'.length).split('/');
+				try { dispatchEventListener('nodata', m ); } catch(exEvent){}
+			    addAdServerCounter(5550001577);
+				    
+			    /****
+			    //PASSBACK DESLIGADO EM 30/05, DEIXANDO PLAYER UNICO DO GOOGLE OPERANDO.
+				if( !dispatchedPassback && typeof window.DYNAD_TV.config.passback !== 'undefined' && !isMobile() ) {
+                    window.DYNAD_TV.config.URL_VAST = window.DYNAD_TV.config.passback
+                    status = STATUS.INITIALIZED;
+                    dispatchedPassback = true;
+                    ifrm.setAttribute('src', '//s.dynad.net/stack/LgY1T9JAP0K1_MprP6oR2vwOqLNRLh63qf6HJcArD96FV625y4INXTs_6cvwvYQ-9r_KEAPiiCSxfXZ7bBrShaBpCA29ibyjuyYGP0LTXAY.html?v=20170210.1');
+                    if( console.log ) 
+                        console.log('[dynad-tv] - tag: loading passback player (ADX)');
+                } else { 
+    				try {
+    					if( idTimeout != null ) {
+    						clearTimeout(idTimeout);
+    						idTimeout = null;
+    					}
+    				} catch (e){}
+    				var m = e.data.substr('dynad-tv-protocol/no_data/'.length).split('/');
+    				try { dispatchEventListener('nodata', m ); } catch(exEvent){}
+				    addAdServerCounter(5550001577);
+                }
+                ****/
+            } else if (e.data == 'dynad-tv-protocol/close') {
+				status = STATUS.CLOSED;
+				try { dispatchEventListener('closed'); } catch(exEvent){}
+
+				try {
+					if( idTimeout != null ) {
+						clearTimeout(idTimeout);
+						idTimeout = null;
+					}
+				} catch (e){}
+
+                divContainer.style.height = '0px';
+                divContainer.style.width = '0%';
+                divContainer.height = '0px';
+                setTimeout(function() {
+                    container.parentNode.removeChild(container);
+                }, 1000);
+
+                dispose();
+                comScorePauseVideoAdvertisement();
+            } else if (e.data == 'dynad-tv-protocol/init') {
+                sendLoadMessage();
+            } else if (e.data == 'dynad-tv-protocol/user_close') {
+                container.contentWindow.postMessage('dynad-tv-protocol/force_close_linear', '*');
+                window['callbackiruol_user_close'] = function(d){};
+                var e = document.createElement('script'); e.setAttribute('type', 'text/javascript'); e.setAttribute('async', 'true');
+                e.setAttribute('src', '//metrics.dynad.net/resources/counter/jsonp/multipleIncWithFk/dynadtv/behavior/close_button/override/?callback=callbackiruol_user_close&ord=' + Date.now() + '&override_0=' + encodeURIComponent(  idAdSystem + '/' + idAdId + '/' + idCreativeId ) );
+                divContainer.appendChild(e);
+            } else if ( e.data.indexOf('dynad-tv-protocol/impression_data/') == 0 ) {                
+                var op = e.data.substr( ('dynad-tv-protocol/impression_data/').length ).split('/');
+                idAdSystem = op[1], idCreativeId = op[0], idAdId = op[2];
+                try { 
+                    if( op.length > 3 ) {
+                        adVideoDuration = Number(op[3]) * 1000;
+                        if( adVideoDuration < 15000 )
+                            adVideoDuration = 15000
+                    }
+                } catch (exTimer){}    
+            } else if ( e.data.indexOf('dynad-tv-protocol/state_skip/') == 0 ) {
+                var op = e.data.substr( ('dynad-tv-protocol/state_skip/').length );
+                divContainer.setAttribute('state_skip', (op == 'true' ? 'none' : 'block') );
+                //var btCloseEle = document.getElementById('floater_bt_close_dynadtv_unique');
+                //if( btCloseEle )
+                //    btCloseEle.style.display = divContainer.getAttribute('state_skip');        				
+            } else if (e.data == 'dynad-tv-protocol/expand') {
+				divContainer.style.width = '100%';
+                container.style.height = (vHeight + 36) + 'px';
+                container.height = (vHeight + 36) + 'px';
+                divContainer.style.animationDuration="1s";
+                divContainer.style.WebkitTransitionDuration="1s";
+                divContainer.style.WebkitTransition="1s";
+                divContainer.style.MozTransition ="1s";
+                divContainer.style.height = (vHeight + 36) + 'px';
+                divContainer.height = (vHeight + 36) + 'px';
+                sendStartCounterMessage();
+                try { dispatchEventListener('expanded', {'w' : vWidth, 'h': vHeight}); } catch(exEvent){}
+                comScorePlayVideoAdvertisement();
+                addAdServerCounter(5550001580);
+                
+                var bc = document.createElement('div');
+                bc.setAttribute('id', 'floater_bt_close_dynadtv_unique');
+                bc.setAttribute('style', "width:30px; text-align: right; height:15px; position:absolute; top:-4px; right:0px; cursor:pointer; z-index:10; color: black; font-size: 12px; display: block;");
+                bc.setAttribute("onclick", "window.postMessage('dynad-tv-protocol/user_close', '*');");
+                bc.innerHTML = '[ x ]';
+                divContainer.style.overflow = 'visible';
+                //if( divContainer.hasAttribute('state_skip') )
+                //    bc.style.display = divContainer.getAttribute('state_skip');
+                divContainer.style.position = 'relative';
+                divContainer.appendChild( bc );
+                
+            }
+        }
+
+        function resize() {
+            var avWidth = divContainer.parentNode.offsetWidth,
+                avHeight = (document.documentElement.clientHeight * 0.6);
+                
+            if( isMobile() ) { //quando for mobile, desconta borda do UOL (10px de cada lado)
+                avWidth -= 20;
+            }
+
+            if (Math.abs(width - avWidth) < Math.abs(height - avHeight) || width > avWidth) {
+                var ratio = width / avWidth;
+                vWidth = Math.round(width / ratio);
+                vHeight = Math.round(height / ratio);
+            } else {
+                var ratio = height / avHeight;
+                vWidth = Math.round(width / ratio);
+                vHeight = Math.round(height / ratio);
+            }
+            if (vWidth > avWidth) {
+                var ratio = vWidth / avWidth;
+                vWidth = Math.round(vWidth / ratio);
+                vHeight = Math.round(vHeight / ratio);
+            }
+            if (vHeight > avHeight) {
+                var ratio = vHeight / avHeight;
+                vWidth = Math.round(vWidth / ratio);
+                vHeight = Math.round(vHeight / ratio);
+            }
+
+            container.contentWindow.postMessage('dynad-tv-protocol/resize/' + vWidth + '/' + vHeight, '*');
+        }
+        
+        function isElementVisible(el, vdHeight, vdWidth) {
+            var rect = el.getBoundingClientRect();
+            var windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            var vertInView = ( (rect.top + (vdHeight / 2))  <= windowHeight) && ((rect.top + (vdHeight / 2)) >= 0);
+            return (vertInView);
+        }
+
+        //
+        // acompanha evento de scroll
+        //
+        function follow() {
+            if (isElementVisible(container, vHeight, vWidth)) {
+                if (status == STATUS.INITIALIZED) {
+                } else if (status == STATUS.LOADED) {
+                    status = STATUS.PLAYING;
+                    sendPlayMessage();
+                } else if (status == STATUS.PAUSED) {
+                    status = STATUS.PLAYING;
+                    sendPlayMessage();
+                }
+            } else {
+                if (status == STATUS.PLAYING) {
+                    status = STATUS.PAUSED;
+                    sendPauseMessage();
+                }
+            }
+        }
+
+        function dispose() {
+            if (window.addEventListener) {
+                removeEventListener("scroll", follow);
+                removeEventListener("touchstart", follow);
+                removeEventListener("touchend", follow);
+                removeEventListener("resize", resize);
+                removeEventListener("focus", sendFocusMessage);
+                removeEventListener("blur", sendBlurMessage);
+            } else {
+    			detachEvent("onscroll", follow);
+    			detachEvent("ontouchstart", follow);
+    			detachEvent("ontouchend", follow);
+            	detachEvent("onresize", resize);
+            	detachEvent("onfocus", sendFocusMessage);
+                detachEvent("onblur", sendBlurMessage);
+    		}
+        }
+
+    	function sendStartCounterMessage() {
+            container.contentWindow.postMessage('dynad-tv-protocol/start-counter', '*');
+            try { dispatchEventListener('counting'); } catch(exEvent){}
+        }
+
+        function sendLoadMessage() {
+    		if( typeof UOLPD !== 'undefined' && typeof UOLPD.dataLayer !== 'undefined' ) {
+				var params = '&videoplayertype=dynad_in-article';
+				try { 
+        		    for(var key in UOLPD.dataLayer) { 
+        		        params += '&'+ key + '=' + UOLPD.dataLayer[ key ];
+        		    }
+        		} catch (exDL ) {
+    				if( typeof UOLPD.dataLayer.tt_age !== 'undefined' ) params += '&tt_age=' + UOLPD.dataLayer.tt_age;
+    				if( typeof UOLPD.dataLayer.tt_cluster !== 'undefined' ) params += '&tt_cluster=' + UOLPD.dataLayer.tt_cluster;
+    				if( typeof UOLPD.dataLayer.tt_customaudience !== 'undefined' ) params += '&tt_customaudience=' + UOLPD.dataLayer.tt_customaudience;
+    				if( typeof UOLPD.dataLayer.tt_gender !== 'undefined' ) params += '&tt_gender=' + UOLPD.dataLayer.tt_gender;
+    				if( typeof UOLPD.dataLayer.tt_lists !== 'undefined' ) params += '&tt_lists=' + UOLPD.dataLayer.tt_lists;
+    				if( typeof UOLPD.dataLayer.tt_microsegments !== 'undefined' ) params += '&tt_microsegments=' + UOLPD.dataLayer.tt_microsegments;
+    				if( typeof UOLPD.dataLayer.tt_socialclass !== 'undefined' ) params += '&tt_socialclass=' + UOLPD.dataLayer.tt_socialclass;
+    				if( typeof UOLPD.dataLayer.tt_subjects !== 'undefined' ) params += '&tt_subjects=' + UOLPD.dataLayer.tt_subjects;
+    				if( typeof UOLPD.dataLayer.tt_team !== 'undefined' ) params += '&tt_team=' + UOLPD.dataLayer.tt_team;
+    			}	
+    			if( params != '' ) {
+				    if( window.DYNAD_TV.config.URL_VAST.indexOf('&cust_params=') > -1 ) {
+				        var temp = window.DYNAD_TV.config.URL_VAST.split('&cust_params=');
+				        window.DYNAD_TV.config.URL_VAST = temp[0] + '&cust_params='+encodeURIComponent( params.substr(1)+"&") + temp[1];
+				    } else 
+					    window.DYNAD_TV.config.URL_VAST += '&cust_params=' + encodeURIComponent( params.substr(1) );
+				}
+    		}
+    		if( typeof window.DYNAD_TV.config.settings !== 'undefined' ) {
+				var st = '';
+				for(var x = 0 ; x < window.DYNAD_TV.config.settings.length; x++) {
+					st += (st != '' ? '/' : '') + window.DYNAD_TV.config.settings[x].key + '=' + encodeURIComponent( window.DYNAD_TV.config.settings[x].value );
+				}
+				if( st != '' )
+    				container.contentWindow.postMessage('dynad-tv-protocol/settings/' + st, '*');
+			}
+            container.contentWindow.postMessage('dynad-tv-protocol/load/' + window.DYNAD_TV.config.URL_VAST, '*');
+        }
+
+    	function sendFocusMessage() {
+    		if( status == STATUS.PLAYING && typeof container !== 'undefined' && typeof container.contentWindow !== 'undefined' )
+    			container.contentWindow.postMessage('dynad-tv-protocol/win-focus', '*');
+    	}
+
+    	function sendBlurMessage() {
+    		console.log('will dispatch blur:', status);
+    		if( status == STATUS.PLAYING && typeof container !== 'undefined' && typeof container.contentWindow !== 'undefined' )
+    			container.contentWindow.postMessage('dynad-tv-protocol/win-blur', '*');
+    	}
+
+        function sendPlayMessage() {
+            container.contentWindow.postMessage('dynad-tv-protocol/play', '*');
+        }
+
+        function sendPauseMessage() {
+            container.contentWindow.postMessage('dynad-tv-protocol/pause', '*');
+        }
+        
+        var hidden, visibilityChange;
+        try {
+            if (typeof document.hidden !== "undefined") {
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+            } else if (typeof document.mozHidden !== "undefined") {
+                hidden = "mozHidden";
+                visibilityChange = "mozvisibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+            }
+        } catch (e){}
+
+        if (window.addEventListener) {
+            addEventListener("scroll", follow, false);
+            addEventListener("touchstart", follow, false);
+            addEventListener("touchend", follow, false);
+            addEventListener("resize", resize, false);
+            addEventListener("focus", sendFocusMessage, false);
+            
+            document.addEventListener(visibilityChange, function() {
+                if (document[hidden]) {
+                    sendBlurMessage();
+                } else {
+                    sendFocusMessage();
+                }
+            });
+
+            addEventListener("blur", function () {
+    			if ( isMouseOverIfrm === false ) {
+    			    try { 
+    			        if(document.activeElement !== ifrm )
+    				        sendBlurMessage();
+    				} catch (e) {
+    				    sendBlurMessage();  
+    				    console.log('failed to detect iframe lost focus', e);
+    				}
+    			}
+    		}, false);
+
+            addEventListener("message", handle, false);
+            container.addEventListener("mouseenter", function (e) { isMouseOverIfrm = true; }, false);
+            container.addEventListener("mouseleave", function (e) { isMouseOverIfrm = false; }, false);
+        } else {
+            attachEvent("onscroll", follow);
+            attachEvent("ontouchstart", follow, false);
+            attachEvent("ontouchend", follow, false);
+            attachEvent("onresize", resize, false);
+            attachEvent("onfocus", sendFocusMessage, false);
+            
+            try { 
+                document.attachEvent('on' + visibilityChange, function() {
+                    if (document[hidden]) {
+                        sendBlurMessage();
+                    } else {
+                    
+                        sendFocusMessage();
+                    }
+                });
+            } catch (exEvent){}
+            
+            attachEvent("onblur", function () {
+    			if ( isMouseOverIfrm === false ) {
+    			    try { 
+    			        if(document.activeElement !== ifrm )
+    				        sendBlurMessage();
+    				} catch (e) {
+    				    console.log('failed to detect iframe lost focus', e);
+    				    sendBlurMessage();  
+    				}
+    			}
+    		}, false);
+    		
+            attachEvent("onmessage", handle);
+            container.attachEvent("onmouseenter", function ( e ) { isMouseOverIfrm = true; }, false);
+            container.attachEvent("onmouseleave", function ( e ) { isMouseOverIfrm = false; }, false);
+        }
+
+        follow();
+
+        function startTimeoutCounter () {
+			if( idTimeout != null )
+				return;
+
+			idTimeout = setTimeout( function () {
+				//change status for timeout
+				status = STATUS.TIMEOUT;
+				setTimeout(function() {
+					//remove container
+					try { divContainer.parentNode.removeChild(divContainer); } catch(e){}
+				}, 1000);
+				//dispatch nodata event
+				dispatchEventListener('nodata', 'timeout operation' );
+				//dispose listeners
+				dispose();
+				//add event counter
+				addAdServerCounter(5550001578);
+			}, window.DYNAD_TV.config.timeout || 16000);
+
+			if (window.addEventListener)
+				removeEventListener("touchstart", startTimeoutCounter, false);
+			else
+				detachEvent("ontouchstart", startTimeoutCounter, false);
+		}
+
+		/**if( isMobile.any() ) {
+			if (window.addEventListener)
+				addEventListener("touchstart", startTimeoutCounter, false);
+			else
+				attachEvent("ontouchstart", startTimeoutCounter, false);
+		} else***/
+			startTimeoutCounter();
+	}
+
+    var divContainer = document.getElementById(containerId),
+        ifrm = document.getElementById(reqid.replace('I', 'IF'));
+    try {
+        try {
+            divContainer.style.width = '0%';
+            ifrm.style.width = '100%';
+            ifrm.width = '100%';
+
+            divContainer.style.height = '0px';
+            ifrm.style.height = '0px';
+            ifrm.height = 0;
+        } catch ( e ) { return false; }
+        DynAdTvKeeper(ifrm);
+    } catch (e) { return false; }
+}
+return true;}catch(e){if(typeof console!=='undefined'&&typeof console.log!=='undefined'){console.log('DynAd Error:');console.log(e);}}})('I5550002193_14979699702021218267618','I',2,'_dynad_c_I5550002193_14979699702021218267618','5550002193');}}catch(e){if(typeof console!=='undefined'&&typeof console.log!=='undefined'){console.log('DynAd Error:');console.log(e);}localCache="";var v='<A HR';v+='EF="https://t.dynad.net/c/?dc=5550002193;ci=5000003610;cr=4000020066.0;ord=0;tid=TB-FE3;srctype=bkp;C=0;tp=HTML;st=1;er=';v+=encodeURI(e.message);v+='" TARGET="_blank" STYLE="" ><IMG ID="I5550002193_14979699702021218267618" S';v+='RC="https://s.dynad.net/stack/EtKfbEG_smAp1XI2-14J_1Ai4M7WYkpLb2egkg2fTzU.png" WIDTH="88" HEIGHT="31" ALT="" BORDER="0"></a><IMG SRC="https://t.dynad.net/n/?dc=5550002193;ci=5000003610;bi=4000020066.0;cr=4000024513.0;srctype=bkp;14979699702021218267618" STYLE="display:none;" WIDTH="0" HEIGHT="0" BORDER="0" />';divAppender(v);}
+})();
